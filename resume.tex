@@ -1,0 +1,145 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[top=30pt,bottom=30pt,right=30pt,left=30pt]{geometry}
+\usepackage{titlesec} % sections formatting
+\usepackage[usenames,dvipsnames]{color} % sections formatting
+\usepackage[english]{babel} % avoids unknown language warning
+\usepackage{enumitem} % enables leftmargin in itemize
+\usepackage{courier} % font
+\usepackage[T1]{fontenc} % font
+\usepackage{hyperref} % links
+\usepackage{fontawesome} % contact icons
+\usepackage{xcolor} % custom colors
+
+% ----- STYLE -----
+% Sections after header - modified & taken from https://github.com/sb2nov/resume
+\titleformat{\section}{
+  \scshape\raggedright\large
+}{}{0em}{}[\color{darkgray}\titlerule \vspace{-3pt}]
+
+% No page numbers
+\pagenumbering{gobble}
+
+% URLs
+\urlstyle{same}
+
+% ----- COMMANDS -----
+% Header spaces
+\newcommand{\contactspace}{\hspace{9pt}}
+
+% Lists
+\renewcommand{\labelitemi}{$\circ$} % level 1: circles
+
+% Organization (school, company, nonprofit, etc.)
+\newcommand{\org}[4]{
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
+    \bfseries{#1} & #2 \\
+    \small #3 & \small #4 \\
+  \end{tabular*}
+}
+
+% Items (list of accomplishments in an organization)
+\newcommand{\items}{\begin{itemize}[leftmargin=*]}
+\newcommand{\itemsEnd}{\end{itemize}}
+
+\begin{document}
+
+% ----- HEADER -----
+\centerline{\huge \textbf{Ryan Pape}}
+\vspace{3pt}
+\centerline{\href{https://linkedin.com/in/rynbp}{\faLinkedin \space rynbp} \contactspace \href{https://github.com/rynbp}{\faGithub \space rynbp}}
+
+% ----- SKILLS -----
+\section{Skills}
+  \begin{minipage}[t]{0.6\linewidth}
+    {\bfseries Techonolgies:} Kafka, React, Storm, Hive, Hadoop, HDFS, Presto, InfluxDB, Aerospike, Git, RabbitMQ, SQL Server
+  \end{minipage}
+  \hspace{0.04\linewidth}
+  \begin{minipage}[t]{0.35\linewidth}
+    {\bfseries Languages:} Java, JavaScript, PHP, Python, CSS/SASS, HTML, SQL
+  \end{minipage}
+
+% ----- EXPERIENCE -----
+\section{Experience}
+  \org
+    {Wayfair}{Boston, MA}
+    {Software Engineer II}{Jul 2017 - Present}
+    \items
+      \vspace{-5pt}
+      \item{{\slshape Mentor:} Onboarded 2 new teammates. Provided feedback in code reviews for 8 new hires and held office hours for larger cohort of 26 junior developers hired through Wayfair Labs.}
+      \vspace{-5pt}
+      \item{{\slshape Code Reviewer:} Reviewed Java code changes by teammates. Provided first-pass feedback on tracking code changes in JavaScript \& PHP.}
+      \vspace{-5pt}
+      \item{{\slshape Operational Tracking Events:} Created or updated 33 tracking event Java classes and their integrations in PHP, JavaScript, and SQL Server as a part of agile workflow. Scoped project roadmap to improve generation of Java classes from YAML config file that decreased engineering time necessary for code changes by 50\%.}
+      \vspace{-5pt}
+      \item{{\slshape On-Call:} Debugged issues with 16 different Storm and Spark applications in on-premise and Google Cloud Platform datacenters as a part of weekly, 24/7 on-call rotations. Monitored recovery of applications after datacenter-wide outages, maintenance, and tests.}
+      \vspace{-5pt}
+      \item{{\slshape Infrastructure Upgrades:} Monitored applications during upgrades on distributed system dependencies such as Spark, RabbitMQ, and more.}
+      \vspace{-5pt}
+      \item{{\slshape Confluent Kafka Proxy Migration:} Currently in progress. Migrating messages that power realtime notifications to a new Kafka topic written to via Confluent Kafka Proxy from PHP client.}
+      \vspace{-5pt}
+      \item{{\slshape InfluxDB Monitoring Conversion:} Migrated Datadog monitors, on-call notifications, and dashboards from Graphite to InfluxDB. Planned reorganization of error logging and Influx metrics currently in progress by teammate.}
+      \vspace{-5pt}
+      \item{{\slshape In-View Tracking:} Designed reusable React component to track items viewed by users. Strategically logged data to REST endpoint to maximize data integrity while minimizing requests made to maintain site performance.}
+      \vspace{-5pt}
+      \item{{\slshape Aerospike REST Service:} Created REST endpoint in Kubernetes Java service that wrote records to Aerspoike from PHP client.}
+      \vspace{-5pt}
+      \item{{\slshape AMP Tracking:} Parsed web analytics data from Google AMP pages and logged it to internal tracking platform.}
+      \vspace{-5pt}
+      \item{{\slshape Timestamp Correction:} Implemented algorithm to correct or drop data with old timestamps tracked from mobile apps recently connected to the Internet after an extended period of time offline.}
+      \vspace{-5pt}
+      \item{{\slshape Hive UDF:} Wrote a user-defined function in Java to convert longs to timestamp strings in Hive as well as one that converts lists of longs to lists of timestamps, which utilizes Hive object inspectors.}
+      \vspace{-5pt}
+      \item{{\slshape Kafka Command Line Consumer:} Added option to internal command line tool to export Avro-serialized Kafka messages to a JSON array of objects written to a file.}
+      \vspace{-5pt}
+      \item{{\slshape Doc Generation:} Led project to generate MkDocs markdown documentation from YAML config file. Wrote script to generate release notes from Git log.}
+      \vspace{-5pt}
+      \item{{\slshape QA Application Architecture:} Proposed architecture for redesigned QA tool that would display tracking events for a device or customer in realtime using React, PHP, Java, Aerospike, Storm, RabbitMQ, Kafka, and Kafka Connect.}
+      \vspace{-5pt}
+      \item{{\slshape Storm Topology Scaling:} Helped teammate identify Storm topology latency bottleneck. Reviewed code changes to split topology into more spouts \& bolts and give the bottleneck bolt more resources.}
+      \vspace{-5pt}
+      \item{{\slshape Frontend Tracking API:} Gathered technical requirements from Frontend engineers working on Extranet site and planned work to enhance React components used on web store for use on Extranet. Reviewed teammate's code changes to make the enhancements.}
+      \vspace{-5pt}
+      \item{{\slshape Kafka Topic Migration:} Migrated high volume data from Recommendation Service to new Kafka topic in multiple datacenters in order to eliminate unnecessary load on realtime Storm topologies.}
+      \vspace{-5pt}
+      \item{{\slshape Device Fingerprinting:} Used industry research to determine hashes of HTML5 elements and browser settings that may uniquely identify devices without cookies in pilot. Strategically prioritized calculation of hashes to maximize uniqueness of hash identifiers while throttling hash calculation to maintain site performance.}
+      \vspace{-5pt}
+      \item{{\slshape PHP Session Bug:} Launched initial investigation into race condition bug where mobile app advertiser identifiers were dropped from PHP sessions. Eliminated possibility that identifiers were never sent from mobile app with analytics queries and mobile app testing. Assisted teammate in brainstorming a new tracking solution.}
+    \itemsEnd
+% ----- VOLUNTEERISM -----
+\section{Volunteerism}
+  \org
+    {City Year Boston}{Boston, MA}
+    {Corps Member at Trotter K-8}{Aug 2016 - Jun 2017}
+    \items
+      \vspace{-5pt}
+      \item{{\slshape 8th Grade Academic \& Attendance Coach:} Helped 3 students increase their English Language Arts grades from C's \& B's to A's. Helped 1 student increase her attendance by 21\%.}
+    \itemsEnd
+  \org
+    {AmeriCorps NCCC}{Sacramento, CA}
+    {Corps Member}{Oct 2015 - Jul 2016}
+    \items
+      \vspace{-5pt}
+      \item{{\slshape BLM Trail Crew:} Lived and worked with 7 teammates to build \& maintain 24 miles of trails in public lands.}
+    \itemsEnd
+% ----- EDUCATION -----
+\section{Education}
+  \org
+    {University of Iowa}{Iowa City, IA}
+    {GPA: 3.91}{Aug 2012 - May 2015}
+    \items
+      \begin{minipage}[t]{0.6\linewidth}
+        \vspace{-2pt}
+        \item Informatics: Human-Computer Interaction, B.A.
+        \vspace{-2pt}
+        \item Computer Science, Minor
+      \end{minipage}
+      \hspace{0.04\linewidth}
+      \begin{minipage}[t]{0.35\linewidth}
+        \vspace{-2pt}
+        \item Psychology, Minor
+        \vspace{-2pt}
+        \item Writing, Certificate (21 s.h.)
+      \end{minipage}
+    \itemsEnd
+\end{document}
