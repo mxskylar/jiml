@@ -9,6 +9,7 @@ urls:
 skills:
   languages:
     - Java
+    - Kotlin
     - JavaScript
     - PHP
     - Python
@@ -23,6 +24,8 @@ skills:
     - Hadoop
     - HDFS
     - Presto
+    - Maven
+    - Gradle
     - InfluxDB
     - Aerospike
     - Git
@@ -37,12 +40,16 @@ experience:
     achievements:
       - Mentor: "Onboarded 2 new teammates. Provided feedback in code reviews for 8 new hires and held office hours for larger cohort of 26 junior developers hired through Wayfair Labs."
       - Code Reviewer: "Reviewed Java code changes by teammates. Provided first-pass feedback on tracking code changes in JavaScript & PHP."
-      - Operational Tracking Events: "Created or updated 33 tracking event Java classes and their integrations in PHP, JavaScript, and SQL Server as a part of agile workflow.
-          Scoped project roadmap to improve generation of Java classes from YAML config file that decreased engineering time necessary for code changes by 50%."
       - On-Call: "Debugged issues with 16 different Storm and Spark applications in on-premise and Google Cloud Platform datacenters as a part of weekly, 24/7 on-call rotations.
           Monitored recovery of applications after datacenter-wide outages, maintenance, and tests."
+      - Operational Tracking Events: "Created or updated 33 tracking event Java classes and their integrations in PHP, JavaScript, and SQL Server as a part of agile workflow.
+          Scoped project roadmap to improve generation of Java classes from YAML config file that decreased engineering time necessary for code changes by 50%."
+      - Android Tracking SDK: "Designing tracking SDK written in Kotlin to replace legacy framework used to track customer interactions on Android mobile app.
+          Gathered requirements from stakeholders on Android team. Currently working towards a beta release."
+      - MirrorMaker Lag Investigation: "Investigated lag in realtime data replication across datacenters by Kafka MirrorMaker.
+          Concluded that large messages sizes were a possible cause and advocated for a POC script to analyze individual message sizes."
       - Infrastructure Upgrades: "Monitored applications during upgrades on distributed system dependencies such as Spark, RabbitMQ, and more."
-      - Confluent Kafka Proxy Migration: "Currently in progress. Migrating messages that power realtime notifications to a new Kafka topic written to via Confluent Kafka Proxy from PHP client."
+      - Kafka Migration: "Migrated messages that power realtime notifications to a new Kafka topic written from a PHP client."
       - InfluxDB Monitoring Conversion: "Migrated Datadog monitors, on-call notifications, and dashboards from Graphite to InfluxDB.
           Planned reorganization of error logging and Influx metrics currently in progress by teammate."
       - In-View Tracking: "Designed reusable React component to track items viewed by users.
