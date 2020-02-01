@@ -2,11 +2,11 @@ Python script that renders LaTeX files from LaTeX templates and YAML configs.
 
 # Setup
 
-Tested with Python `3.7.3`. Requires the following Python packages:
+Python dependencies are in `requirements.txt`. Install them with `pip` or `pip3`:
 
-- [PyYAML](https://pyyaml.org/wiki/PyYAML)
-- [Jinja2](http://jinja.pocoo.org/)
-- [jinja2-ext-custom-autoescaping](https://pypi.org/project/jinja2-ext-custom-autoescaping/)
+```python
+pip3 install -r requirements.txt
+```
 
 The Python script creates a LaTeX file. To generate PDF from the resulting LaTeX file, install a [TeX distribution](https://www.latex-project.org/).
 
