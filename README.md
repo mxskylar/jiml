@@ -19,9 +19,10 @@ The Python script creates a LaTeX file. To generate PDF from the resulting LaTeX
 | output   | o         | LaTeX file to render.                                  |
 
 Render a LaTeX file by running the Python script:
+On Unix-like systems with Python 3 installed in `/user/bin/python3`:
 
 ```bash
-python3 render.py -y resume.yaml -t resume.tex -o resume.tex
+./render.py -y resume.yaml -t resume.tex -o resume.tex
 ```
 
 Then, generate a PDF with your TeX distribution:
