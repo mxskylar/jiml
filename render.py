@@ -5,24 +5,9 @@ from argparse import ArgumentParser
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from jinja2_ext_custom_autoescaping import CustomAutoescapeExtension, enable_custom_autoescaping # https://github.com/mbello/jinja2-ext-custom-autoescaping
 
-# Jinja environments
-LATEX_ENVIRONMENT = Environment(
-    block_start_string='\BLOCK{',
-    block_end_string='}',
-    variable_start_string='\VAR{',
-    variable_end_string='}',
-    comment_start_string='\#{',
-    comment_end_string='}',
-    line_statement_prefix='%%',
-    line_comment_prefix='%#',
-    trim_blocks=True,
-    extensions=[CustomAutoescapeExtension],
-    loader=FileSystemLoader(templateDir, followlinks=True),
-	autoescape=built_in_select_autoescape
-)
-
+# LATEX
 # Escapes special characters in Latex file       
-def escape_latex_characters(val):
+def escapeLatexChars(val):
 	# \ first to avoid double escpaing
 	LATEX_SPECIAL_CHARACTERS = ['\\', '&', '{', '}', '%']
 	LATEX_ESCAPED_CHARACTERS = ['/\\', '\&', '\{', '\}', '\%']
@@ -30,6 +15,68 @@ def escape_latex_characters(val):
 		for i in range(0, len(LATEX_SPECIAL_CHARACTERS)):
 			val = val.replace(LATEX_SPECIAL_CHARACTERS[i], LATEX_ESCAPED_CHARACTERS[i])
 	return val
+
+# Taken from http://eosrei.net/articles/2015/11/latex-templates-python-and-jinja2-generate-pdfs
+CUSTOM_LATEX_AUTOESCAPE = select_autoescape(
+	enabled_extensions=['tex'],
+    disabled_extensions=[],
+    default_for_string=False,
+    default=False
+)
+
+BUILT_IN_LATEX_AUTOESCAPE = select_autoescape(
+	enabled_extensions=['html', 'htm', 'xml'],
+    disabled_extensions=['tex'],
+    default_for_string=True,
+	default=True
+)
+
+LATEX_OPS = {
+	'custom_select_autoescape': CUSTOM_LATEX_AUTOESCAPE,
+   	'custom_autoescape_filter_name': 'escapeLatexChars',
+    'custom_autoescape_filter_func': escapeLatexChars
+}
+
+# DEFAULT
+
+
+# JINJA ENVIRONMENTS
+# Gets Jinja environment for given template
+def getEnvForTemplate(template):
+	templateExt = os.path.basename(os.path.splitext(template)[1])
+	temlateDir = os.path.dirname(args.template)
+
+	if templateExt == 'tex':
+		latexEnv = Environment(
+		    block_start_string='\BLOCK{',
+		    block_end_string='}',
+		    variable_start_string='\VAR{',
+		    variable_end_string='}',
+		    comment_start_string='\#{',
+		    comment_end_string='}',
+		    line_statement_prefix='%%',
+		    line_comment_prefix='%#',
+		    trim_blocks=True,
+		    extensions=[CustomAutoescapeExtension],
+		    loader=FileSystemLoader(templateDir, followlinks=True),
+			autoescape=BUILT_IN_LATEX_AUTOESCAPE
+		)
+		enable_custom_autoescaping(latexEnv, **LATEX_OPS)
+		return latexEnv
+	else:
+		return Environment(
+			loader=FileSystemLoader(templateDir, followlinks=True)
+		)
+
+# Renders template for given yaml file
+def renderTemplate(yamlFile, templateFile, outputFile, env):
+	yamlInput = yaml.load(open(yamlFile, 'r').read(), Loader=yaml.FullLoader)
+	env = getEnvForTemplate(templateFile)
+
+	rendered = env.get_template(templateFile).render(yamlInput)
+	with open(outputFile, 'w') as output:
+		output.write(rendered)
+	print('%s rendered to %s' % (yamlFile, outputFile))
 
 if __name__ == '__main__':
 	# Arguments
@@ -39,32 +86,12 @@ if __name__ == '__main__':
 	parser.add_argument('--output', '-o', help='LaTeX file to render.')
 	args = parser.parse_args()
 
-	# Prepare template
-	built_in_select_autoescape = select_autoescape(
-		enabled_extensions=['html', 'htm', 'xml'],
-	    disabled_extensions=['tex'],
-	    default_for_string=True,
-		default=True
-	)
-	custom_select_autoescape = select_autoescape(
-		enabled_extensions=['tex'],
-	    disabled_extensions=[],
-	    default_for_string=False,
-	    default=False
-	)
-	temlateDir = os.path.dirname(args.template)
+	# Prepare template	
 	yamlInput = yaml.load(open(args.yaml, 'r').read(), Loader=yaml.FullLoader)
-	# Taken from http://eosrei.net/articles/2015/11/latex-templates-python-and-jinja2-generate-pdfs
-	env = LATEX_ENVIRONMENT
-	opts = {
-		'custom_select_autoescape': custom_select_autoescape,
-	   	'custom_autoescape_filter_name': 'escape_latex_characters',
-	    'custom_autoescape_filter_func': escape_latex_characters
-	}
-	enable_custom_autoescaping(env, **opts)
+	env = getEnvForTemplate(args.template)
 
 	# Render template
-	latex = env.get_template(args.template).render(yamlInput)
+	rendered = env.get_template(args.template).render(yamlInput)
 	with open(args.output, 'w') as output:
-		output.write(latex)
+		output.write(rendered)
 	print('%s rendered to %s' % (args.yaml, args.output))
