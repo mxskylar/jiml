@@ -1,0 +1,40 @@
+name: Full Name
+contacts:
+  linkedin: "LinkedIn"
+  github: "GitHub"
+urls:
+  linkedin: "https://linkedin.com/in/test"
+  github: "https://github.com/test"
+
+skills:
+  languages:
+    - Python
+  technologies:
+    - Git
+
+experience:
+  - name: Employer
+    loc: Location
+    title: Title
+    date: Jan 1900- Jul 1900
+    achievements:
+      - Achivement 1: "Description" 
+      - Achievement 2: "Description"
+
+volunteerism:
+  - name: Non-Profit
+    loc: Location
+    title: Title
+    date: Jan 1900- Jul 1900
+    achievements:
+      - Achivement 1: "Description" 
+      - Achievement 2: "Description"
+
+education:
+  - name: School
+    loc: Location
+    gpa: 4.0
+    date: Jan 1900- Jul 1900
+    degrees:
+      - "Major 1"
+      - "Minor 1"
