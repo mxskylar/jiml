@@ -1,0 +1,4 @@
+#!/bin/sh
+
+projectPath=$(git rev-parse --show-toplevel)
+$projectPath/render-test.py
