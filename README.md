@@ -12,11 +12,11 @@ The Python script creates a LaTeX file. To generate PDF from the resulting LaTeX
 
 # Usage
 
-| Long Arg | Short Arg | Description                                            |
-|----------|-----------|--------------------------------------------------------|
-| yaml     | y         | YAML config file.                                      |
-| template | t         | Jinja2 LaTeX template. Located in templates directory. |
-| output   | o         | LaTeX file to render.                                  |
+| Long Arg | Short Arg | Description            |
+|----------|-----------|------------------------|
+| yaml     | y         | YAML config file.      |
+| template | t         | Jinja2 LaTeX template. |
+| output   | o         | LaTeX file to render.  |
 
 Render a LaTeX file by running the Python script:
 On Unix-like systems with Python 3 installed in `/user/bin/python3`:

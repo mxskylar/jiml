@@ -15,13 +15,11 @@ def escape_latex_characters(val):
 			val = val.replace(LATEX_SPECIAL_CHARACTERS[i], LATEX_ESCAPED_CHARACTERS[i])
 	return val
 
-TEMPLATES_DIR = 'templates'
-
 if __name__ == '__main__':
 	# Arguments
 	parser = ArgumentParser(description='Generates Jinja template from YAML file.')
 	parser.add_argument('--yaml', '-y', help='YAML config file.')
-	parser.add_argument('--template', '-t', help='Jinja2 LaTeX template. Located in ' + TEMPLATES_DIR + ' directory.')
+	parser.add_argument('--template', '-t', help='Jinja2 LaTeX template.')
 	parser.add_argument('--output', '-o', help='LaTeX file to render.')
 	args = parser.parse_args()
 
@@ -38,6 +36,7 @@ if __name__ == '__main__':
 	    default_for_string=False,
 	    default=False
 	)
+        temlateDir = os.path.dirname(args.template)
 	yamlInput = yaml.load(open(args.yaml, 'r').read(), Loader=yaml.FullLoader)
 	# Taken from http://eosrei.net/articles/2015/11/latex-templates-python-and-jinja2-generate-pdfs
 	env = Environment(
@@ -51,7 +50,7 @@ if __name__ == '__main__':
 	    line_comment_prefix='%#',
 	    trim_blocks=True,
 	    extensions=[CustomAutoescapeExtension],
-	    loader=FileSystemLoader(TEMPLATES_DIR, followlinks=True),
+	    loader=FileSystemLoader(templateDir, followlinks=True),
 		autoescape=built_in_select_autoescape
 	)
 	opts = {
