@@ -2,6 +2,7 @@
 
 import unittest
 import render
+from jinja2_ext_custom_autoescaping import CustomAutoescapeExtension
 
 class RenderTest(unittest.TestCase):
 
@@ -10,6 +11,7 @@ class RenderTest(unittest.TestCase):
 		template = 'templates/tech-resume.tex'
 		output = 'test_output/resume.tex'
 		env = render.getEnvForTemplate(template)
+		self.assertEqual(env.autoescape, render.BUILT_IN_LATEX_AUTOESCAPE)
 		render.renderTemplate(yaml, template, output, env)
 
 def suite():
