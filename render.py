@@ -38,10 +38,7 @@ LATEX_OPS = {
     'custom_autoescape_filter_func': escapeLatexChars
 }
 
-# DEFAULT
-
-
-# JINJA ENVIRONMENTS
+# JINJA
 # Gets Jinja environment for given template
 def getEnvForTemplate(template):
 	templateExt = os.path.basename(os.path.splitext(template)[1])[1:]
