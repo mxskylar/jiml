@@ -1,19 +1,18 @@
 #!/usr/bin/python3
 
 import unittest
-import importlib
+import render
 
 class RenderTest(unittest.TestCase):
 
 	def testLatex(self):
-		print(render.escape_latex_characters("Foo &"))
+		self.assertEquals(render.env, render.LATEX_ENVIRONMENT)
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(WidgetTestCase('testLatex'))
+    suite.addTest(RenderTest('testLatex'))
     return suite
 
 if __name__ == '__main__':
-	render = importlib.import_module('./render', package='render')
 	runner = unittest.TextTestRunner()
 	runner.run(suite())

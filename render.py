@@ -5,6 +5,22 @@ from argparse import ArgumentParser
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from jinja2_ext_custom_autoescaping import CustomAutoescapeExtension, enable_custom_autoescaping # https://github.com/mbello/jinja2-ext-custom-autoescaping
 
+# Jinja environments
+LATEX_ENVIRONMENT = Environment(
+    block_start_string='\BLOCK{',
+    block_end_string='}',
+    variable_start_string='\VAR{',
+    variable_end_string='}',
+    comment_start_string='\#{',
+    comment_end_string='}',
+    line_statement_prefix='%%',
+    line_comment_prefix='%#',
+    trim_blocks=True,
+    extensions=[CustomAutoescapeExtension],
+    loader=FileSystemLoader(templateDir, followlinks=True),
+	autoescape=built_in_select_autoescape
+)
+
 # Escapes special characters in Latex file       
 def escape_latex_characters(val):
 	# \ first to avoid double escpaing
@@ -36,23 +52,10 @@ if __name__ == '__main__':
 	    default_for_string=False,
 	    default=False
 	)
-        temlateDir = os.path.dirname(args.template)
+	temlateDir = os.path.dirname(args.template)
 	yamlInput = yaml.load(open(args.yaml, 'r').read(), Loader=yaml.FullLoader)
 	# Taken from http://eosrei.net/articles/2015/11/latex-templates-python-and-jinja2-generate-pdfs
-	env = Environment(
-	    block_start_string='\BLOCK{',
-	    block_end_string='}',
-	    variable_start_string='\VAR{',
-	    variable_end_string='}',
-	    comment_start_string='\#{',
-	    comment_end_string='}',
-	    line_statement_prefix='%%',
-	    line_comment_prefix='%#',
-	    trim_blocks=True,
-	    extensions=[CustomAutoescapeExtension],
-	    loader=FileSystemLoader(templateDir, followlinks=True),
-		autoescape=built_in_select_autoescape
-	)
+	env = LATEX_ENVIRONMENT
 	opts = {
 		'custom_select_autoescape': custom_select_autoescape,
 	   	'custom_autoescape_filter_name': 'escape_latex_characters',
