@@ -9,8 +9,8 @@ class RenderTest(unittest.TestCase):
 		yaml = 'test.yaml'
 		template = 'templates/tech-resume.tex'
 		output = 'test_output/resume.tex'
-		env = getEnvForTemplate(args.template)
-		renderTemplate(yaml, template, output, env)
+		env = render.getEnvForTemplate(template)
+		render.renderTemplate(yaml, template, output, env)
 
 def suite():
     suite = unittest.TestSuite()

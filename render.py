@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import os
 import yaml
 from argparse import ArgumentParser
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -43,8 +44,8 @@ LATEX_OPS = {
 # JINJA ENVIRONMENTS
 # Gets Jinja environment for given template
 def getEnvForTemplate(template):
-	templateExt = os.path.basename(os.path.splitext(template)[1])
-	temlateDir = os.path.dirname(args.template)
+	templateExt = os.path.basename(os.path.splitext(template)[1])[1:]
+	templateDir = os.path.dirname(template)
 
 	if templateExt == 'tex':
 		latexEnv = Environment(
@@ -69,9 +70,10 @@ def getEnvForTemplate(template):
 		)
 
 # Renders template for given yaml file
-def renderTemplate(yamlFile, templateFile, outputFile, env):
+def renderTemplate(yamlFile, template, outputFile, env):
 	yamlInput = yaml.load(open(yamlFile, 'r').read(), Loader=yaml.FullLoader)
-	env = getEnvForTemplate(templateFile)
+	env = getEnvForTemplate(template)
+	templateFile = os.path.basename(template)
 
 	rendered = env.get_template(templateFile).render(yamlInput)
 	with open(outputFile, 'w') as output:
