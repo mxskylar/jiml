@@ -86,12 +86,5 @@ if __name__ == '__main__':
 	parser.add_argument('--output', '-o', help='LaTeX file to render.')
 	args = parser.parse_args()
 
-	# Prepare template	
-	yamlInput = yaml.load(open(args.yaml, 'r').read(), Loader=yaml.FullLoader)
 	env = getEnvForTemplate(args.template)
-
-	# Render template
-	rendered = env.get_template(args.template).render(yamlInput)
-	with open(args.output, 'w') as output:
-		output.write(rendered)
-	print('%s rendered to %s' % (args.yaml, args.output))
+	renderTemplate(args.yaml, args.template, args.output, env)
