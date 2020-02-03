@@ -10,16 +10,11 @@ class RenderTest(unittest.TestCase):
 
 	projectPath = subprocess.run(["git", "rev-parse", "--show-toplevel"], stdout=subprocess.PIPE).stdout.decode('utf-8').strip()
 	templatesDir = os.path.join(projectPath, "templates")
-	testOutputDir = os.path.join(projectPath, "test_output")
-
-	def setUp(self):
-		if not os.path.exists(self.testOutputDir):
-			os.makedirs(self.testOutputDir)
 
 	def testLatex(self):
 		yaml = os.path.join(self.projectPath, 'test.yaml')
 		template = os.path.join(self.templatesDir, 'tech-resume.tex')
-		output = os.path.join(self.testOutputDir, 'tech-resume.tex')
+		output = os.path.join(self.projectPath, 'demo-resume.tex')
 		env = render.getEnvForTemplate(template)
 		self.assertEqual(env.autoescape, render.BUILT_IN_LATEX_AUTOESCAPE)
 		render.renderTemplate(yaml, template, output, env)
@@ -27,7 +22,7 @@ class RenderTest(unittest.TestCase):
 	def testHtml(self):
 		yaml = os.path.join(self.projectPath, 'test.yaml')
 		template = os.path.join(self.templatesDir, 'tech-resume.html')
-		output = os.path.join(self.testOutputDir, 'tech-resume.html')
+		output = os.path.join(self.projectPath, 'demo-resume.html')
 		env = render.getEnvForTemplate(template)
 		render.renderTemplate(yaml, template, output, env)
 
@@ -38,5 +33,6 @@ def suite():
     return suite
 
 if __name__ == '__main__':
+	unittest.main(failfast=True)
 	runner = unittest.TextTestRunner()
 	runner.run(suite())
