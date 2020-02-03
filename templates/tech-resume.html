@@ -12,7 +12,7 @@
 			{% for achievement in job.achievements %}
   			{% for name, item in achievement.items() %}
 			<ol>
-				<b>{{ name }}:</b> {{ item|e }}
+				<b>{{ name }}:</b> {{ item }}
 			</ol>
 			{% endfor %}
 			{% endfor %}
