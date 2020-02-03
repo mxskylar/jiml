@@ -67,20 +67,23 @@ def getEnvForTemplate(template):
 			autoescape=select_autoescape(['html', 'xml'])
 		)
 	else:
+		print("Escaping is not supported for file format %s. Rendering template without escaping special characters..." % templateExt)
 		return Environment(
 			loader=FileSystemLoader(templateDir, followlinks=True)
 		)
 
 # Renders template for given yaml file
-def renderTemplate(yamlFile, template, outputFile, env):
-	yamlInput = yaml.load(open(yamlFile, 'r').read(), Loader=yaml.FullLoader)
-	env = getEnvForTemplate(template)
+def renderTemplate(yamlPath, template, output, env):
+	yamlFile = open(yamlPath, 'r')
+	yamlInput = yaml.load(yamlFile.read(), Loader=yaml.FullLoader)
+	yamlFile.close()
 	templateFile = os.path.basename(template)
 
 	rendered = env.get_template(templateFile).render(yamlInput)
-	with open(outputFile, 'w') as output:
-		output.write(rendered)
-	print('%s rendered to %s' % (yamlFile, outputFile))
+	with open(output, 'w') as outputFile:
+		outputFile.write(rendered)
+	outputFile.close()
+	print('%s rendered to %s' % (yamlPath, output))
 
 if __name__ == '__main__':
 	# Arguments

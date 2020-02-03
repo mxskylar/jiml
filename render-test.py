@@ -26,10 +26,18 @@ class RenderTest(unittest.TestCase):
 		env = render.getEnvForTemplate(template)
 		render.renderTemplate(yaml, template, output, env)
 
+	def testDefault(self):
+		yaml = os.path.join(self.projectPath, 'demo.yaml')
+		template = os.path.join(self.templatesDir, 'unescaped-resume-demo.txt')
+		output = os.path.join(self.projectPath, 'demo-unescaped.txt')
+		env = render.getEnvForTemplate(template)
+		render.renderTemplate(yaml, template, output, env)
+
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(RenderTest('testLatex'))
     suite.addTest(RenderTest('testHtml'))
+    suite.addTest(RenderTest('testDefault'))
     return suite
 
 if __name__ == '__main__':
