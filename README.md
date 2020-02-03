@@ -8,7 +8,7 @@ For example, a CV can be maintained in a single YAML file but published as HTML 
 | Long Arg | Short Arg | Description             |
 |----------|-----------|-------------------------|
 | yaml     | y         | YAML config file.       |
-| template | t         | Jinja2 LaTeX template.  |
+| template | t         | Jinja2 template.        |
 | output   | o         | Output file to render.  |
 
 On Unix-like systems with Python 3 installed in `/user/bin/python3`:
