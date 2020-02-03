@@ -20,8 +20,8 @@ experience:
     title: Title
     date: Jan 1900- Jul 1900
     achievements:
-      - Achivement 1: "Description" 
-      - Achievement 2: "Description"
+      - LatTex Escaping: "\\ & { } %" 
+      - HTML Escaping: "<br /> &#8721; {% jinja loop %} {{ jinja var }} ∑"
 
 volunteerism:
   - name: Non-Profit

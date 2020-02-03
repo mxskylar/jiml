@@ -61,6 +61,11 @@ def getEnvForTemplate(template):
 		)
 		enable_custom_autoescaping(latexEnv, **LATEX_OPS)
 		return latexEnv
+	elif templateExt == 'html' or templateExt == 'xml':
+		return Environment(
+			loader=FileSystemLoader(templateDir, followlinks=True),
+			autoescape=select_autoescape(['html', 'xml'])
+		)
 	else:
 		return Environment(
 			loader=FileSystemLoader(templateDir, followlinks=True)

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ name }}</title>
+	</head>
+	<body>
+		<h1>{{ name }}</h1>
+
+		<h2>Experience</h2>
+		{% for job in experience %}
+			<h3>{{ job.name }}</h3>
+			{% for achievement in job.achievements %}
+  			{% for name, item in achievement.items() %}
+			<ol>
+				<b>{{ name }}:</b> {{ item|e }}
+			</ol>
+			{% endfor %}
+			{% endfor %}
+		{% endfor %}
+	</body>
+</html>
