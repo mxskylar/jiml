@@ -12,7 +12,7 @@ class RenderTest(unittest.TestCase):
 	templatesDir = os.path.join(projectPath, "templates")
 
 	def testLatex(self):
-		yaml = os.path.join(self.projectPath, 'test.yaml')
+		yaml = os.path.join(self.projectPath, 'demo.yaml')
 		template = os.path.join(self.templatesDir, 'tech-resume.tex')
 		output = os.path.join(self.projectPath, 'demo-resume.tex')
 		env = render.getEnvForTemplate(template)
@@ -20,7 +20,7 @@ class RenderTest(unittest.TestCase):
 		render.renderTemplate(yaml, template, output, env)
 
 	def testHtml(self):
-		yaml = os.path.join(self.projectPath, 'test.yaml')
+		yaml = os.path.join(self.projectPath, 'demo.yaml')
 		template = os.path.join(self.templatesDir, 'tech-resume.html')
 		output = os.path.join(self.projectPath, 'demo-resume.html')
 		env = render.getEnvForTemplate(template)

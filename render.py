@@ -87,7 +87,7 @@ if __name__ == '__main__':
 	parser = ArgumentParser(description='Generates Jinja template from YAML file.')
 	parser.add_argument('--yaml', '-y', help='YAML config file.')
 	parser.add_argument('--template', '-t', help='Jinja2 LaTeX template.')
-	parser.add_argument('--output', '-o', help='LaTeX file to render.')
+	parser.add_argument('--output', '-o', help='Output file to render.')
 	args = parser.parse_args()
 
 	env = getEnvForTemplate(args.template)
