@@ -1,0 +1,117 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[top=30pt,bottom=30pt,right=30pt,left=30pt]{geometry}
+\usepackage{titlesec} % sections formatting
+\usepackage[usenames,dvipsnames]{color} % sections formatting
+\usepackage[english]{babel} % avoids unknown language warning
+\usepackage{enumitem} % enables leftmargin in itemize
+\usepackage{courier} % font
+\usepackage[T1]{fontenc} % font
+\usepackage{hyperref} % links
+\usepackage{fontawesome} % contact icons
+\usepackage{xcolor} % custom colors
+
+% ----- STYLE -----
+% Sections after header - modified & taken from https://github.com/sb2nov/resume
+\titleformat{\section}{
+  \scshape\raggedright\large
+}{}{0em}{}[\color{darkgray}\titlerule \vspace{-3pt}]
+
+% No page numbers
+\pagenumbering{gobble}
+
+% URLs
+\urlstyle{same}
+
+% ----- COMMANDS -----
+% Header spaces
+\newcommand{\contactspace}{\hspace{9pt}}
+
+% Lists
+\renewcommand{\labelitemi}{$\circ$} % level 1: circles
+
+% Organization (school, company, nonprofit, etc.)
+\newcommand{\org}[4]{
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
+    \bfseries{#1} & #2 \\
+    \small #3 & \small #4 \\
+  \end{tabular*}
+}
+
+% Items (list of accomplishments in an organization)
+\newcommand{\items}{\begin{itemize}[leftmargin=*]}
+\newcommand{\itemsEnd}{\end{itemize}}
+
+\begin{document}
+
+% ----- HEADER -----
+\centerline{\huge \textbf{\VAR{name}}}
+\vspace{3pt}
+\centerline{\href{\VAR{urls.email}}{\VAR{contacts.email}} \contactspace \VAR{contacts.phone} \contactspace \href{\VAR{urls.linkedin}}{\faLinkedin \space \VAR{contacts.linkedin}} \contactspace \href{\VAR{urls.github}}{\faGithub \space \VAR{contacts.github}} \contactspace \href{\VAR{urls.skype}}{\faSkype \space \VAR{contacts.skype}}}
+
+% ----- SKILLS -----
+\section{Skills}
+  \begin{minipage}[t]{0.6\linewidth}
+    {\bfseries Techonolgies:} \BLOCK{for i in range(0, skills.technologies|length-1)}\VAR{skills.technologies[i]}, \BLOCK{endfor}\VAR{skills.technologies[skills.technologies|length-1]}
+  \end{minipage}
+  \hspace{0.04\linewidth}
+  \begin{minipage}[t]{0.35\linewidth}
+    {\bfseries Languages:} \BLOCK{for i in range(0, skills.languages|length-1)}\VAR{skills.languages[i]}, \BLOCK{endfor}\VAR{skills.languages[skills.lanaguages|length-1]}
+  \end{minipage}
+
+% ----- EXPERIENCE -----
+\section{Experience}
+  %% for job in experience
+  \org
+    {\VAR{job.name}}{\VAR{job.loc}}
+    {\VAR{job.title}}{\VAR{job.date}}
+    \items
+      %% for achievement in job.achievements
+      %% for name, item in achievement.items()
+      \vspace{-5pt}
+      \item{{\slshape \VAR{name}:} \VAR{item}}
+      %% endfor
+      %% endfor
+    \itemsEnd
+  %% endfor
+
+% ----- VOLUNTEERISM -----
+\section{Volunteerism}
+  %% for volunteer in volunteerism
+  \org
+    {\VAR{volunteer.name}}{\VAR{volunteer.loc}}
+    {\VAR{volunteer.title}}{\VAR{volunteer.date}}
+    \items
+      %% for achievement in volunteer.achievements
+      %% for name, item in achievement.items()
+      \vspace{-5pt}
+      \item{{\slshape \VAR{name}:} \VAR{item}}
+      %% endfor
+      %% endfor
+    \itemsEnd
+  %% endfor
+
+% ----- EDUCATION -----
+\section{Education}
+  %% for uni in education
+  \org
+    {\VAR{uni.name}}{\VAR{uni.loc}}
+    {GPA: \VAR{uni.gpa}}{\VAR{uni.date}}
+    \items
+      \begin{minipage}[t]{0.6\linewidth}
+        %% for i in range(0, uni.degrees|length // 2)
+        \vspace{-2pt}
+        \item \VAR{uni.degrees[i]}
+        %% endfor
+      \end{minipage}
+      \hspace{0.04\linewidth}
+      \begin{minipage}[t]{0.35\linewidth}
+        %% for i in range(uni.degrees|length // 2, uni.degrees|length)
+        \vspace{-2pt}
+        \item \VAR{uni.degrees[i]}
+        %% endfor 
+      \end{minipage}
+    \itemsEnd
+  %% endfor
+
+\end{document}
