@@ -1,10 +1,17 @@
 name: Full Name
+location: Cambridge, MA
 contacts:
-  linkedin: "LinkedIn"
-  github: "GitHub"
+  email: "email@host.com"
+  phone: "+1 (555) 555-5555"
+  linkedin: "linkedinUsername"
+  github: "githubUsername"
+  skype: "skypeUsername"
 urls:
-  linkedin: "https://linkedin.com/in/test"
-  github: "https://github.com/test"
+  email: "mailto:ryanbenderpape@gmail.com"
+  phone: "tel:+16306057453"
+  linkedin: "https://linkedin.com/in/linkedinUsername"
+  github: "https://github.com/githubUsername"
+  skype: "https://join.skype.com/invite/skypeInviteHash"
 
 skills:
   languages:
