@@ -1,0 +1,7 @@
+#!/bin/bash
+
+projectPath=$(git rev-parse --show-toplevel)
+$projectPath/render-test.py
+if [[ $? != 0 ]]; then
+  exit 1
+fi

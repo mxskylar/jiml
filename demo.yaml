@@ -1,0 +1,51 @@
+name: Full Name
+location: Cambridge, MA
+contacts:
+  email: "email@host.com"
+  phone: "+1 (555) 555-5555"
+  linkedin: "linkedinUsername"
+  github: "githubUsername"
+  skype: "skypeUsername"
+urls:
+  email: "mailto:ryanbenderpape@gmail.com"
+  phone: "tel:+16306057453"
+  linkedin: "https://linkedin.com/in/linkedinUsername"
+  github: "https://github.com/githubUsername"
+  skype: "https://join.skype.com/invite/skypeInviteHash"
+
+skills:
+  languages:
+    - Python
+    - HTML
+  technologies:
+    - Git
+    - Latex
+
+experience:
+  - name: Employer
+    loc: Location
+    title: Title
+    date: Jan 1900- Jul 1900
+    main:
+      - LatTex Escaping: "foo"
+    subsections:
+      - Subsection:
+        - HTML Escaping: "bar"
+
+volunteerism:
+  - name: Non-Profit
+    loc: Location
+    title: Title
+    date: Jan 1900 - Jul 1900
+    achievements:
+      - Achivement 1: "Description" 
+      - Achievement 2: "Description"
+
+education:
+  - name: School
+    loc: Location
+    gpa: 4.0
+    date: Jan 1900 - Jul 1900
+    degrees:
+      - "Major 1"
+      - "Minor 1"
